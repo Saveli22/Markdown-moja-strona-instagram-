@@ -1,81 +1,90 @@
 # 📸 SocialApp – Webowa Platforma Społecznościowa (Instagram)
 
 ## 1. Architektura systemu
+Projekt oparty jest na sprawdzonej **architekturze klient–serwer (Client–Server)**, która zapewnia wyraźny podział na:
 
-Projekt oparty jest na architekturze klient–serwer (Client–Server), zapewniającej wyraźny podział na warstwę prezentacji, logiki biznesowej oraz bazę danych.
+- Warstwę prezentacji (Frontend)
+- Warstwę logiki biznesowej (Backend)
+- Warstwę danych (Baza danych)
 
-System składa się z trzech głównych warstw:
+Takie podejście gwarantuje przejrzystość systemu, łatwość rozwoju oraz bezpieczeństwo danych.
 
 ---
 
 ## 2. Warstwa prezentacji (Frontend)
-
-Technologie: HTML, CSS, JavaScript
+**Technologie:** HTML, CSS, JavaScript  
 
 Frontend odpowiada za:
-- renderowanie interfejsu użytkownika,
-- wyświetlanie feedu postów,
-- obsługę interakcji (like, komentarze),
-- komunikację z backendem poprzez zapytania HTTP (Fetch / AJAX).
 
-Cechy:
-- responsywny design (RWD),
-- dynamiczne aktualizowanie danych bez przeładowania strony,
-- intuicyjny interfejs inspirowany nowoczesnymi mediami społecznościowymi.
+- Renderowanie interfejsu użytkownika
+- Wyświetlanie feedu postów
+- Obsługę interakcji (lajki, komentarze)
+- Komunikację z backendem poprzez zapytania HTTP (Fetch / AJAX)
+
+**Cechy wyróżniające:**
+
+- Responsywny design (RWD)
+- Dynamiczne aktualizowanie danych bez przeładowania strony
+- Intuicyjny interfejs inspirowany nowoczesnymi mediami społecznościowymi
 
 ---
 
 ## 3. Warstwa logiki aplikacji (Backend)
-
-Technologia: PHP
+**Technologia:** PHP  
 
 Backend odpowiada za:
-- obsługę autoryzacji i uwierzytelniania użytkowników,
-- zarządzanie sesjami,
-- przetwarzanie danych przesyłanych z frontendu,
-- obsługę systemu polubień i komentarzy,
-- kontrolę dostępu do zasobów.
 
-Architektura backendu oparta jest na modularnych endpointach (np. logowanie, dodawanie postów, obsługa lajków), co pozwala na łatwą rozbudowę systemu w przyszłości.
+- Autoryzację i uwierzytelnianie użytkowników
+- Zarządzanie sesjami
+- Przetwarzanie danych przesyłanych z frontendu
+- Obsługę systemu polubień i komentarzy
+- Kontrolę dostępu do zasobów
+
+**Architektura backendu:**  
+Modularne endpointy (logowanie, dodawanie postów, obsługa lajków) umożliwiają łatwe rozbudowywanie systemu w przyszłości.
 
 ---
 
 ## 4. Warstwa danych (Baza danych)
+**Technologia:** MySQL  
 
-Technologia: MySQL
+Baza danych jest relacyjna, z logicznie zaprojektowanymi relacjami między tabelami:
 
-System wykorzystuje relacyjną bazę danych z odpowiednio zaprojektowanymi relacjami między tabelami:
+- `users` – dane użytkowników
+- `posts` – przechowywanie postów
+- `likes` – relacje polubień
+- `comments` – system komentarzy
 
-- users – dane użytkowników
-- posts – przechowywanie postów
-- likes – relacje polubień
-- comments – system komentarzy
-
-Zastosowanie kluczy obcych zapewnia spójność danych i integralność relacji.
+Zastosowanie **kluczy obcych** zapewnia spójność danych i integralność relacji.
 
 ---
 
 ## 5. Bezpieczeństwo
-
 System uwzględnia:
-- szyfrowanie haseł (password_hash),
-- zarządzanie sesją użytkownika,
-- walidację danych wejściowych,
-- zabezpieczenie przed wielokrotnym polubieniem tego samego posta.
+
+- **Szyfrowanie haseł** (`password_hash`) – chroni dane logowania użytkowników
+- **Walidacja i filtrowanie danych wejściowych** – zabezpiecza przed atakami typu XSS i SQL Injection
+- **Zabezpieczenie sesji użytkownika** – uniemożliwia nieautoryzowane logowanie
+- **Ograniczenie wielokrotnego polubienia tego samego posta**
+- **Bezpieczne operacje po stronie backendu** – wszystkie krytyczne działania (dodawanie postów, polubienia, komentarze) są przetwarzane tylko na serwerze, co chroni przed manipulacją w konsoli przeglądarki
+- **Oddzielenie danych wrażliwych od frontendowego DOM** – np. nie przechowujemy haseł czy tokenów w `localStorage`
 
 ---
 
 ## 6. Skalowalność i rozwój
-
 Architektura umożliwia:
-- łatwe dodanie systemu obserwowania użytkowników,
-- wprowadzenie prywatnych wiadomości,
-- implementację powiadomień w czasie rzeczywistym,
-- migrację do frameworków (np. Laravel) w przyszłości.
+
+- Dodanie systemu obserwowania użytkowników
+- Wprowadzenie prywatnych wiadomości
+- Implementację powiadomień w czasie rzeczywistym
+- Migrację do frameworków PHP (np. Laravel) w przyszłości
 
 ---
 
 ## 7. Podsumowanie
+**SocialApp** to nowoczesna, skalowalna aplikacja społecznościowa oparta na technologii webowej.  
+Dzięki wyraźnemu podziałowi na **Frontend – Backend – Baza danych**, system jest:
 
-Projekt stanowi nowoczesną, skalowalną aplikację społecznościową opartą na technologii webowej. 
-Dzięki podziałowi na warstwy (Frontend – Backend – Baza danych) system jest przejrzysty, bezpieczny i gotowy do dalszego rozwoju.
+- Przejrzysty
+- Bezpieczny
+- Gotowy do dalszego rozwoju i integracji nowych funkcjonalności
